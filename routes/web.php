@@ -30,6 +30,7 @@ Route::get('/category/create',[CategoryController::class,'create'])->name('categ
 Route::post('/category/store',[CategoryController::class,'store'])->name('category.store');
 
 Route::get('/course',[CourseController::class,'list'])->name('course.list');
+Route::post('/course/store',[CourseController::class,'store'])->name('course.store');
 
 
 

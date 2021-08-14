@@ -1,6 +1,6 @@
 @extends('backend.master')
 @section('content')
-<h1>course List</h1>
+<h1>Course List</h1>
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
@@ -13,33 +13,30 @@
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Name</th>
+        <th scope="col">Category ID</th>
+        <th scope="col">Course Code</th>
+        
     </tr>
     </thead>
+   
     <tbody>
+    {{--course--}}
+{{--@dd($courses)--}}
+@foreach($courses as $course)
     <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <th scope="row">{{$course->id}}</th>
+        <td>{{$course->name}}</td>
+        <td>{{$course->categories_id}}</td>
+        <td>{{$course->code}}</td>
+        <td>
+            <a href="" class="btn btn-primary">view</a>
+        </td>
     </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-    </tr>
+@endforeach
     </tbody>
 </table>
-
+{{$courses->links('pagination::bootstrap-4')}}
 
 
 
@@ -48,6 +45,8 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+
+    
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add new Product</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -55,24 +54,31 @@
                 </button>
             </div>
             <div class="modal-body">
-
+            <form action="{{route('course.store')}}" method="POST"> 
+        @csrf
+        <div class="form-group">
+                            <label for="course_name">Select Category</label>
+                            <select class="form-control" name="category_id" id="">
+                                @foreach($categories as $cat)
+                                <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                @endforeach
+                            </select>
+                            </div>
                 <form>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Name</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Product name">
-{{--                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>--}}
+                        <label for="course_name">Name</label>
+                        <input name="course_name" type="text" class="form-control" id="course_name"  placeholder="Enter Course name">
+                      
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Description</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="product description">
+                        <label for="course_code">Course Code</label>
+                        <input name="course_code" type="text" class="form-control" id="course_code" placeholder="Enter Course Code">
                     </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
 
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Submit</button>
-            </div>
+           
         </div>
     </div>
 </div>
