@@ -24,7 +24,7 @@
               <span data-feather="shopping-cart"></span>
               faculty
             </a>
-          </li>
+          </li>ls
           <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="users"></span>

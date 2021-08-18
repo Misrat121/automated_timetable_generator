@@ -27,7 +27,7 @@
     <tr>
         <th scope="row">{{$course->id}}</th>
         <td>{{$course->name}}</td>
-        <td>{{$course->categories_id}}</td>
+        <td>{{$course->category->name}}</td>
         <td>{{$course->code}}</td>
         <td>
             <a href="" class="btn btn-primary">view</a>

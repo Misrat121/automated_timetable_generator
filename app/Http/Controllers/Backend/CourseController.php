@@ -11,7 +11,8 @@ class CourseController extends Controller
 {
     public function list()
     {
-        $courses=Course::paginate(3);
+        $courses=Course::with('category')->paginate(3);
+        
         $categories=Category::all();
          return view('backend.layouts.course.list',compact('courses','categories'));
       }
